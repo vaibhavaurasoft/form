@@ -1,0 +1,154 @@
+/* Existing CSS styles */
+/* .form-field {
+  margin-bottom: 20px;
+} */
+
+
+
+.form-container {
+  padding: 20px;
+  border: 2px dashed #ccc;
+}
+
+/* Styles for file input */
+
+.form-field .custom-file-upload {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+}
+
+.form-field .custom-file-upload:hover {
+  background-color: #0056b3;
+}
+
+.form-field .file-name {
+  display: block;
+  margin-top: 5px;
+  color: #555;
+}
+/* FormBuilder.c/ss *
+
+/* Form Builder Container */
+.form-builder {
+  font-family: Arial, sans-serif;
+}
+
+/* Form Container Styles */
+.form-container {
+  margin-top: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+
+/* Add animation to the form buttons on hover */
+.form-buttons button:hover {
+  transform: scale(0.9);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Add background color and padding to the buttons */
+.form-buttons button {
+  background-color: #e7f121;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Style the Save button */
+.form-buttons .btn-primary {
+  background-color: #28a745;
+}
+
+/* Style the Reset button */
+.form-buttons .btn-danger {
+  background-color: #dc3545;
+}
+
+/* Style the Log Data button */
+.form-buttons .btn-info {
+  background-color: #17a2b8;
+}
+
+/* Bank Form Select Dropdown */
+.form-select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.form-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Additional styles for the select dropdown arrow */
+.form-select::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #000 transparent transparent transparent;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Saved Layouts List */
+.list-unstyled {
+  padding-left: 0;
+}
+
+/* Add animation to the saved layout buttons on hover */
+.list-unstyled .btn-warning:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+/* FormBuilder.css */
+
+/* Input Fields */
+.form-field input[type="text"],
+.form-field input[type="file"],
+.form-field select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.form-field input[type="text"]:focus,
+.form-field input[type="file"]:focus,
+.form-field select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Placeholder Text */
+.form-field input[type="text"]::placeholder,
+.form-field input[type="file"]::placeholder,
+.form-field select::placeholder {
+  color: #adb5bd;
+}
+
+/* Add animation to the input fields on hover */
+.form-field input[type="text"]:hover,
+.form-field input[type="file"]:hover,
+.form-field select:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease-in-out;
+}

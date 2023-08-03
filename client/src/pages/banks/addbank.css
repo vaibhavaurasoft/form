@@ -1,0 +1,69 @@
+AddBankPage.css
+
+.add-bank-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.add-bank-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-bank-form .form-group {
+  margin-bottom: 15px;
+}
+
+.add-bank-form .form-label {
+  font-weight: bold;
+}
+
+.add-bank-btn {
+  display: inline-flex;
+  align-items: center;
+}
+
+.add-bank-btn svg {
+  font-size: 1.2rem;
+  margin-right: 5px;
+}
+/* addbank.css */
+
+.bank-list-sidebar {
+  /* background-color: #f8f9fa; */
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bank-list-sidebar h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.bank-list-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bank-list-sidebar li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.bank-list-sidebar li:last-child {
+  border-bottom: none;
+}
+
+.bank-list-sidebar li:hover {
+  cursor: pointer;
+  scale: 1.2;
+  background: #725e0e;
+}
+
+
