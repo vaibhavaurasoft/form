@@ -21,16 +21,18 @@ function Navbar() {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
+                exact={true}
                 activeClassName="active"
-                exact
                 to="/"
               >
-               Forms 
+                Forms
               </NavLink>
+              
             </li>
             <li className="nav-item">
               <NavLink
                 className="nav-link"
+                exact={true}
                 activeClassName="active"
                 to="/add-bank-From"
               >
@@ -49,6 +51,7 @@ function Navbar() {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
+                exact={true}
                 activeClassName="active"
                 to="/add-bank"
               >

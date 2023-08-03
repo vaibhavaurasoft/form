@@ -105,42 +105,42 @@
 
 import React, { useState } from "react";
 import FormBuilder from "./FormBuilder";
-
-const FieldSidebar = ({ step }) => {
-  const [forms, setForms] = useState([]);
-  const [selectedForm, setSelectedForm] = useState(null);
+import { NavLink } from "react-router-dom";
+const FieldSidebar = ({ step, onNextStep }) => {
+  // const [forms, setForms] = useState([]);
+  // const [selectedForm, setSelectedForm] = useState(null);
   const handleDragStart = (event, field) => {
     event.dataTransfer.setData("field", field);
   };
 
-  const handleSaveForm = (formName, formLayout) => {
-    const storedLayouts = JSON.parse(localStorage.getItem("layouts") || "[]");
-    const newLayouts = [...storedLayouts];
+  // const handleSaveForm = (formName, formLayout) => {
+  //   // const storedLayouts = JSON.parse(localStorage.getItem("layouts") || "[]");
+  //   // const newLayouts = [...storedLayouts];
 
-    // Save the layout for the current step in local storage
-    newLayouts.push({
-      step: step,
-      name: formName,
-      fields: formLayout,
-    });
-    localStorage.setItem("layouts", JSON.stringify(newLayouts));
+  //   // Save the layout for the current step in local storage
+  //   // newLayouts.push({
+  //   //   step: step,
+  //   //   name: formName,
+  //   //   fields: formLayout,
+  //   // });
+  //   // localStorage.setItem("layouts", JSON.stringify(newLayouts));
 
-    // Update the forms state to show the saved layout in the sidebar
-    setForms((prevForms) => [
-      ...prevForms,
-      { name: formName, layout: formLayout },
-    ]);
-  };
+  //   // Update the forms state to show the saved layout in the sidebar
+  //   setForms((prevForms) => [
+  //     ...prevForms,
+  //     { name: formName, layout: formLayout },
+  //   ]);
+  // };
 
-  const handleFormClick = (index) => {
-    setSelectedForm(forms[index].layout);
-  };
-  const handleFormSelect = (index) => {
-    const selectedFormLayout = forms[index].layout;
-    // Do something with the selectedFormLayout, if needed.
-  };
+  // const handleFormClick = (index) => {
+  //   setSelectedForm(forms[index].layout);
+  // };
+  // const handleFormSelect = (index) => {
+  //   const selectedFormLayout = forms[index].layout;
+  //   // Do something with the selectedFormLayout, if needed.
+  // };
 
-  const filteredForms = forms.filter((form) => form.step === step);
+  // const filteredForms = forms.filter((form) => form.step === step);
 
   return (
     <div className="d-flex p-3">
@@ -183,8 +183,12 @@ const FieldSidebar = ({ step }) => {
           Input Image
         </div>
       </div>
-      <FormBuilder onSaveForm={handleSaveForm} formLayout={null} />
-      <div className="w-25 ms-3">
+      <FormBuilder
+        onNextStep={onNextStep}
+        // onSaveForm={handleSaveForm}
+        // formLayout={null}
+      />
+      {/* <div className="w-25 ms-3">
         <h4>Saved Forms for Step {step}:</h4>
         <ul>
           {forms.map((form, index) => (
@@ -193,7 +197,7 @@ const FieldSidebar = ({ step }) => {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
