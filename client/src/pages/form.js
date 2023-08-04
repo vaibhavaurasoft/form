@@ -217,3 +217,5 @@ handleLoadLayout()
 };
 
 export default FormBuilder;
+
+//  i am working on daynamic form . in thisform i drop input filed and saving in localstorage with stepname . now this code do like if currentstep have any input filed or not . if thata filed any avalbe then show that filed otherwise show form empty. here is my code . i am also giving you refrance code which is working same but that is featching data from api but you have to fetach data from localstorage but we need same funcionlity that refrnce code have . here is my main code 

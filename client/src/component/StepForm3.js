@@ -75,14 +75,14 @@ function Stepformlearn() {
           Back Step
         </button>
         )}
-        {activeStep < allSteps.length - 1 && (
+        {/* {activeStep < allSteps.length - 1 && (
         <button
           className="m-4 btn btn-outline-success"
           onClick={handleNextStep}
         >
           Next Step
         </button>
-        )}
+        )} */}
       </div>
     </>
   );
