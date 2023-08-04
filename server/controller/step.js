@@ -19,10 +19,28 @@ const deleteAllStep = async (req, res) => {
     res.status(500).json({ error: "Failed to delete all step", data: null });
   }
 };
+const deleteStepById =  async(req,res)=>{
+  try {
+    const deletedLayout = await Step.findByIdAndDelete(req.params.id);
+    if (!deletedLayout) {
+      return res
+        .status(404)
+        .json({ error: "Form Step not found", data: null });
+    }
+    res.status(200).json({
+      message: "Form Step deleted successfully",
+      data: deletedLayout,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete form Step", data: null });
+  }
+}
+
 
 module.exports = {
   addStep,
   Allsetps,
   deleteAllStep,
+  deleteStepById,
 }; 
     

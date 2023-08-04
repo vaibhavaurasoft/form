@@ -6,7 +6,7 @@ const addBank = async(req,res)=>{
 }
 const AllBanks = async(req,res)=>{
     const AllBanks = await Bank.find()
-    res.status(200).json({message:"All Steps",data:AllBanks})
+    res.status(200).json({message:"All Banks",data:AllBanks})
 } 
 const deleteAllBanks = async (req, res) => {
   try {

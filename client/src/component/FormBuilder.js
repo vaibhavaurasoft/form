@@ -70,35 +70,145 @@
    };
 
    
-  const handleSaveLayout = async () => {
-    try {
-      if (stepname === "2") {
-        const secondstepfield = [
-          stepname,
-          fields.map((field) => ({ ...field })),
-        ];
-        let firstepdata = localStorage.getItem("layouts");
-        firstepdata = firstepdata ? JSON.parse(firstepdata) : { steps: [] };
-        firstepdata.steps.push(secondstepfield);
-        localStorage.setItem("layouts", JSON.stringify(firstepdata));
+  
+//   const handleSaveLayout = async () => {
+//   try {
+//     const currentStepFields = fields.map((field) => ({ ...field }));
+//     const layoutToSave = {
+//       bankId: selectedBankId,
+//       steps: [[stepname, currentStepFields]],
+//     };
 
-        const response = await api.post("/bankformlayout", firstepdata);
-        console.log("API Response:", response.data);
-        setOpenPopup(true);
+//     let allLayoutsData = localStorage.getItem("layouts");
+//     if (allLayoutsData) {
+//       allLayoutsData = JSON.parse(allLayoutsData);
+//       // Check if the layout data already exists for the current step
+//       const existingStepData = allLayoutsData.steps.find(
+//         (stepData) => stepData[0] === stepname
+//       );
+//       if (existingStepData) {
+//         // If the step data exists, update the fields
+//         existingStepData[1] = currentStepFields;
+//       } else {
+//         // If the step data doesn't exist, add it to the steps array
+//         allLayoutsData.steps.push(layoutToSave.steps[0]);
+//       }
+//     } else {
+//       // If there is no existing layout data, initialize it with the current step data
+//       allLayoutsData = { steps: [layoutToSave.steps[0]] };
+//     }
+
+//     // Step 4: Save the updated layout data back to local storage
+//     localStorage.setItem("layouts", JSON.stringify(allLayoutsData));
+
+//     if (stepname === "4") {
+//       const response = await api.post("/bankformlayout", allLayoutsData);
+//       console.log("API Response:", response.data);
+//       setOpenPopup(true);
+//     } else {
+//       setFormData(layoutToSave);
+//     }
+
+//     onNextStep();
+//   } catch (error) {
+//     console.error("Error saving layout:", error);
+//   }
+// };
+
+// const handleSaveLayout = async () => {
+//   try {
+//     const currentStepFields = fields.map((field) => ({ ...field }));
+//     const layoutToSave = {
+//       bankId: selectedBankId,
+//       steps: [[stepname, currentStepFields]],
+//     };
+
+//     let allLayoutsData = localStorage.getItem("layouts");
+//     if (allLayoutsData) {
+//       allLayoutsData = JSON.parse(allLayoutsData);
+//       // Check if the layout data already exists for the current step
+//       const existingStepData = allLayoutsData.steps.find(
+//         (stepData) => stepData[0] === stepname
+//       );
+//       if (existingStepData) {
+//         // If the step data exists, update the fields
+//         existingStepData[1] = currentStepFields;
+//       } else {
+//         // If the step data doesn't exist, add it to the steps array
+//         allLayoutsData.steps.push(layoutToSave.steps[0]);
+//       }
+//     } else {
+//       // If there is no existing layout data, initialize it with the current step data
+//       allLayoutsData = { steps: [layoutToSave.steps[0]] };
+//     }
+
+//     // Save the updated layout data back to local storage
+//     localStorage.setItem("layouts", JSON.stringify(allLayoutsData));
+
+//     // Save the bankId in local storage
+//     const bankId = localStorage.setItem("bankId", selectedBankId);
+
+//     if (stepname === "4") {
+//       const response = await api.post("/bankformlayout", allLayoutsData);
+//       console.log("API Response:", response.data);
+//       setOpenPopup(true);
+//     } else {
+//       setFormData(layoutToSave);
+//     }
+
+//     onNextStep();
+//   } catch (error) {
+//     console.error("Error saving layout:", error);
+//   }
+// };
+const handleSaveLayout = async () => {
+  try {
+    const currentStepFields = fields.map((field) => ({ ...field }));
+    const layoutToSave = {
+      bankId: selectedBankId,
+      steps: [[stepname, currentStepFields]],
+    };
+
+    let allLayoutsData = localStorage.getItem("layouts");
+    if (allLayoutsData) {
+      allLayoutsData = JSON.parse(allLayoutsData);
+      // Check if the layout data already exists for the current step
+      const existingStepData = allLayoutsData.steps.find(
+        (stepData) => stepData[0] === stepname
+      );
+      if (existingStepData) {
+        // If the step data exists, update the fields
+        existingStepData[1] = currentStepFields;
       } else {
-        const layoutToSave = {
-          bankId: selectedBankId,
-          steps: [[stepname, fields.map((field) => ({ ...field }))]],
-        };
-        setFormData(layoutToSave);
-        localStorage.setItem("layouts", JSON.stringify(layoutToSave));
-
-        onNextStep();
+        // If the step data doesn't exist, add it to the steps array
+        allLayoutsData.steps.push(layoutToSave.steps[0]);
       }
-    } catch (error) {
-      console.error("Error saving layout:", error);
+    } else {
+      // If there is no existing layout data, initialize it with the current step data
+      allLayoutsData = { steps: [layoutToSave.steps[0]] };
     }
-  };
+
+    // Save the updated layout data back to local storage
+    localStorage.setItem("layouts", JSON.stringify(allLayoutsData));
+
+    if (stepname === "4") {
+      // Make an API call to save the data for step 2
+      const response = await api.post("/bankformlayout", {
+        bankId: selectedBankId,
+        steps: allLayoutsData.steps,
+      });
+      console.log("API Response:", response.data);
+      setOpenPopup(true);
+    } else {
+      setFormData(layoutToSave);
+    }
+
+    onNextStep();
+  } catch (error) {
+    console.error("Error saving layout:", error);
+  }
+};
+
 
   const handleClosePopup = () => {
     setOpenPopup(false);
@@ -280,6 +390,18 @@ useEffect(()=>{
      localStorage.clear();
      window.location.reload();
    };
+     useEffect(() => {
+       handleResetForm();
+       // Load data from local storage and set the fields when the component mounts
+       const savedLayout = localStorage.getItem("layouts");
+       if (savedLayout) {
+         const data = JSON.parse(savedLayout);
+         if (data.steps.length >= stepname) {
+           const stepData = data.steps[stepname - 1];
+           setFields(stepData[1]);
+         }
+       }
+     }, [stepname]);
    const formContainerClass = openPopup
      ? "form-container animated shake"
      : "form-container";
@@ -287,7 +409,7 @@ useEffect(()=>{
      <div className="form-builder  container">
        {stepname && stepname === "1" ? (
          <select onChange={handelBankSelect} className="form-select mt-3 w-50">
-           <option>Select Your Bank</option>
+           <option>Select Form Name</option>
            {Banks &&
              Banks.map((bank, index) => (
                <option key={index} value={bank._id}>
@@ -317,7 +439,7 @@ useEffect(()=>{
            </DialogActions>
          </Dialog>
          <div className="mt-3 d-flex justify-content-center align-items-center">
-           {stepname && stepname === "2" ? (
+           {stepname && stepname === "4" ? (
              <button onClick={handleSaveLayout} className="btn btn-primary">
                Save
              </button>
