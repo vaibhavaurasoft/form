@@ -18,7 +18,7 @@ const deleteAllStep = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Failed to delete all step", data: null });
   }
-};
+}; 
 const deleteStepById =  async(req,res)=>{
   try {
     const deletedLayout = await Step.findByIdAndDelete(req.params.id);
@@ -35,6 +35,23 @@ const deleteStepById =  async(req,res)=>{
     res.status(500).json({ error: "Failed to delete form Step", data: null });
   }
 }
+const updateStepById = async (req, res) => {
+  try {
+    const updatedStep = await Step.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedStep) {
+      return res
+        .status(404)
+        .json({ error: "Form Step not found", data: null });
+    }
+    res.status(200).json({
+      message: "Form Step updated successfully",
+      data: updatedStep,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update form Step", data: null });
+  }
+};
+
 
 
 module.exports = {
@@ -42,5 +59,6 @@ module.exports = {
   Allsetps,
   deleteAllStep,
   deleteStepById,
+  updateStepById,
 }; 
     

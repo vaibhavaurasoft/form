@@ -27,7 +27,6 @@ function Navbar() {
               >
                 Forms
               </NavLink>
-              
             </li>
             <li className="nav-item">
               <NavLink
@@ -39,15 +38,15 @@ function Navbar() {
                 Add From
               </NavLink>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <NavLink
                 className="nav-link"
                 activeClassName="active"
-                to="/all-forms"
+                to="/steps"
               >
-                see All Form
+                steps
               </NavLink>
-            </li> */}
+            </li>
             <li className="nav-item">
               <NavLink
                 className="nav-link"

@@ -42,7 +42,7 @@ const FormBuilder = () => {
     };
 
     fetchLayouts();
-  }, []);
+  }, []); 
   // Handle loading a layout
   const handleLoadLayout = async (layoutId) => {
     try {
@@ -217,3 +217,5 @@ handleLoadLayout()
 };
 
 export default FormBuilder;
+
+

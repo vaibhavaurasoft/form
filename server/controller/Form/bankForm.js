@@ -50,7 +50,7 @@ const getFormLayoutById = async (req, res) => {
 
     if (!formLayout) {
       return res.status(404).json({ message: "Form layout not found" });
-    }
+    } 
 
     res.status(200).json({
       message: "Form layout fetched successfully",
@@ -95,12 +95,12 @@ const getFormLayoutById = async (req, res) => {
   };
  const deleteFormLayoutById = async (req, res) => {
    try {
-     const { formLayoutId } = req.params;
-     const deletedFormLayout = await BankForm.findByIdAndRemove(formLayoutId);
+     const { id } = req.params;
+     const deletedFormLayout = await BankForm.findByIdAndRemove(id);
 
      if (!deletedFormLayout) {
        return res.status(404).json({ message: "Form layout not found" });
-     }
+     } 
 
      res.status(200).json({
        message: "Form layout deleted successfully",
