@@ -4,7 +4,7 @@ import api from "../api/api";
 import FormBuilderView from "./form";
 
 function StepData() {
-  const [allSteps, setAllSteps] = useState([]); // Store fetched steps from API
+  const [allSteps, setAllSteps] = useState([]); 
   const [activeStep, setActiveStep] = useState(0);
 
   const handleBackStep = () => {
@@ -77,4 +77,3 @@ function StepData() {
 }
 
 export default StepData;
-// this is my step form, and in this code i want when i click on save and next step change to next step

@@ -6,7 +6,7 @@ import FormBuilder from "./FormBuilder";
 import { NavLink } from "react-router-dom";
 
 function Stepformlearn() {
-  const [allSteps, setAllSteps] = useState([]); // Store fetched steps from API
+  const [allSteps, setAllSteps] = useState([]); 
   const [activeStep, setActiveStep] = useState(0);
   const [stepNames,SetstepNames] =  useState("")
 

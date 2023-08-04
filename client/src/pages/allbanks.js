@@ -27,7 +27,6 @@ const FormListPage = () => {
   return (
     <div className="container mt-5">
       <h1 className="text-center mb-4">Form List</h1>
-      {/* Render the StepData component and pass the savedForms prop */}
       <div className="table-responsive">
         <table className="table table-striped table-bordered">
           <thead className="table-dark">

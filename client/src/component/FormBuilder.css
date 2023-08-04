@@ -1,16 +1,9 @@
-/* Existing CSS styles */
-/* .form-field {
-  margin-bottom: 20px;
-} */
-
-
 
 .form-container {
   padding: 20px;
   border: 2px dashed #ccc;
 }
 
-/* Styles for file input */
 
 .form-field .custom-file-upload {
   display: inline-block;
@@ -31,14 +24,7 @@
   margin-top: 5px;
   color: #555;
 }
-/* FormBuilder.c/ss *
 
-/* Form Builder Container */
-.form-builder {
-  font-family: Arial, sans-serif;
-}
-
-/* Form Container Styles */
 .form-container {
   margin-top: 20px;
   max-width: 800px;
@@ -47,13 +33,11 @@
 }
 
 
-/* Add animation to the form buttons on hover */
 .form-buttons button:hover {
   transform: scale(0.9);
   transition: transform 0.2s ease-in-out;
 }
 
-/* Add background color and padding to the buttons */
 .form-buttons button {
   background-color: #e7f121;
   color: #fff;
@@ -63,22 +47,18 @@
   cursor: pointer;
 }
 
-/* Style the Save button */
 .form-buttons .btn-primary {
   background-color: #28a745;
 }
 
-/* Style the Reset button */
 .form-buttons .btn-danger {
   background-color: #dc3545;
 }
 
-/* Style the Log Data button */
 .form-buttons .btn-info {
   background-color: #17a2b8;
 }
 
-/* Bank Form Select Dropdown */
 .form-select {
   width: 100%;
   padding: 8px;
@@ -93,7 +73,6 @@
   outline: none;
 }
 
-/* Additional styles for the select dropdown arrow */
 .form-select::after {
   content: "";
   position: absolute;
@@ -107,19 +86,12 @@
   pointer-events: none;
 }
 
-/* Saved Layouts List */
-.list-unstyled {
-  padding-left: 0;
-}
 
-/* Add animation to the saved layout buttons on hover */
+
 .list-unstyled .btn-warning:hover {
   transform: scale(1.1);
   transition: transform 0.2s ease-in-out;
 }
-/* FormBuilder.css */
-
-/* Input Fields */
 .form-field input[type="text"],
 .form-field input[type="file"],
 .form-field select {
@@ -131,21 +103,9 @@
   transition: border-color 0.2s ease;
 }
 
-.form-field input[type="text"]:focus,
-.form-field input[type="file"]:focus,
-.form-field select:focus {
-  border-color: #007bff;
-  outline: none;
-}
 
-/* Placeholder Text */
-.form-field input[type="text"]::placeholder,
-.form-field input[type="file"]::placeholder,
-.form-field select::placeholder {
-  color: #adb5bd;
-}
 
-/* Add animation to the input fields on hover */
+
 .form-field input[type="text"]:hover,
 .form-field input[type="file"]:hover,
 .form-field select:hover {

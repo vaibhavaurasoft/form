@@ -11,12 +11,11 @@ const AddBankPage = () => {
   const [Banks, setBanks] = useState([]);
 
   const handleAddBank = async () => {
-    // Perform API call to add bank using bankName and location
     try {
       const response = await api.post("/bank", { bankname, location });
       if (response.ok) {
         // Bank added successfully
-        history.push("/banks"); // Redirect to the banks list page
+        history.push("/banks"); 
       } else {
         // Handle error
         console.error("Failed to add bank:", response.status);

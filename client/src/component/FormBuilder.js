@@ -10,7 +10,8 @@
  import api from "../api/api";
 
  const FormBuilder = ({ onNextStep }) => {
-   // State variables
+
+
    var stepname = localStorage.getItem("activeStep");
    const [openPopup, setOpenPopup] = useState(false);
    const [fields, setFields] = useState([]);
@@ -19,20 +20,14 @@
    const [layouts, setLayouts] = useState([]);
    const [Banks, setBanks] = useState([]);
    const [selectedBankId, setSelectedBankId] = useState("");
-  //  const [ stepname , setStepname ] = useState("1")
+ 
 
-  //  useEffect(() => {
-  //    setStepname(localStorage.getItem("activeStep"));
-  //  }, [stepname]);
-
-   // Handle drop event
    const handleDrop = (event) => {
      event.preventDefault();
      const field = event.dataTransfer.getData("field");
      setFields((prevFields) => [...prevFields, { type: field, label: field }]);
    };
 
-   // Fetch banks on component mount
    useEffect(() => {
      const fetchBanks = async () => {
        try {
@@ -49,14 +44,12 @@
      fetchBanks();
    }, []);
 
-   // Handle field label change
    const handleFieldLabelChange = (index, newLabel) => {
      const updatedFields = [...fields];
      updatedFields[index].label = newLabel;
      setFields(updatedFields);
    };
 
-   // Handle adding options to a field
    const handleAddOption = (index) => {
      const updatedFields = [...fields];
      if (!updatedFields[index].options) {
@@ -66,7 +59,6 @@
      setFields(updatedFields);
    };
 
-   // Handle updating an option name
    const handleUpdateOptionName = (index, optionIndex, newOptionName) => {
      const updatedFields = [...fields];
      if (updatedFields[index].options) {
@@ -77,7 +69,7 @@
      setFields(updatedFields);
    };
 
-   //
+   
   const handleSaveLayout = async () => {
     try {
       if (stepname === "2") {
@@ -90,10 +82,9 @@
         firstepdata.steps.push(secondstepfield);
         localStorage.setItem("layouts", JSON.stringify(firstepdata));
 
-        // Send data to the backend
         const response = await api.post("/bankformlayout", firstepdata);
         console.log("API Response:", response.data);
-        setOpenPopup(true); // Open the popup after successful API call
+        setOpenPopup(true);
       } else {
         const layoutToSave = {
           bankId: selectedBankId,
@@ -109,26 +100,23 @@
     }
   };
 
-  // Handle closing the popup
   const handleClosePopup = () => {
     setOpenPopup(false);
     localStorage.removeItem("layouts");
     window.location.reload()
   };
 
-  // Handle resetting the form
   const handleResetForm = () => {
     setFields([]);
     setFormData({});
     setFormName("");
-    setOpenPopup(false); // Close the popup when resetting the form
+    setOpenPopup(false); 
   };
   
 useEffect(()=>{
   handleResetForm()
 },[stepname])
 
-   // Fetch layouts on component mount
    useEffect(() => {
      const fetchLayouts = async () => {
        try {
@@ -147,17 +135,12 @@ useEffect(()=>{
      fetchLayouts();
    }, []);
 
-   // Handle loading a layout
    const handleLoadLayout = async (layoutId) => {
      try {
        const response = await api.get(`/bankformlayout/${layoutId}`);
-       // const response = await api.get(
-       //   `/bankformlayout/64ca4c5b1386285eea0034cd`
-       // );
-
-       const loadedLayout = response.data.data; // Assuming there's only one layout fetched
+      
+       const loadedLayout = response.data.data; 
        console.log(loadedLayout.bankId);
-       // Set the selected bank ID and form fields according to the loaded layout
        setSelectedBankId(loadedLayout.bankId?._id || "");
        const loadedFields = loadedLayout.steps.find(
          (step) => step.stepNumber === stepname
@@ -168,14 +151,12 @@ useEffect(()=>{
      }
    };
 
-   // Handle bank select event
    const handelBankSelect = async (event) => {
      const selectedBankId = event.target.value;
      setSelectedBankId(selectedBankId);
-     await handleLoadLayout(selectedBankId); // Fetch the selected step layout based on the bank ID
+     await handleLoadLayout(selectedBankId); 
    };
 
-   // Fetch layout on selected bank or step change
    useEffect(() => {
      const fetchLayout = async () => {
        if (selectedBankId && stepname) {
@@ -186,7 +167,6 @@ useEffect(()=>{
      fetchLayout();
    }, [selectedBankId, stepname]);
 
-   // Handle input change
    const handleInputChange = (field, value) => {
      setFormName((prevFormData) => ({
        ...prevFormData,
@@ -194,7 +174,6 @@ useEffect(()=>{
      }));
    };
 
-   // Render the form fields
    const renderFields = () => {
      return fields.map((field, index) => (
        <div key={index} className="form-field">
@@ -213,7 +192,6 @@ useEffect(()=>{
      ));
    };
 
-   // Render input based on field type
    const renderInput = (field, index, label) => {
      switch (field.type) {
        case "input-text":
@@ -237,7 +215,6 @@ useEffect(()=>{
        case "input-dropdown":
          return (
            <div key={index} className="form-field">
-             {/* <label>Input Dropdown</label> */}
              <select
                className="form-control"
                onChange={(event) =>
@@ -279,13 +256,11 @@ useEffect(()=>{
              ))}
            </div>
          );
-       // Add cases for other field types here...
        default:
          return null;
      }
    };
 
-   // Handle saving form data
    const handleSaveData = async () => {
      try {
        const dataToSave = {
@@ -301,7 +276,6 @@ useEffect(()=>{
      }
    };
 
-   // Handle deleting all layouts
    const deleteAllLayout = () => {
      localStorage.clear();
      window.location.reload();
@@ -358,32 +332,7 @@ useEffect(()=>{
              Reset Form
            </button>
          </div>
-         {/* <button onClick={handleSaveData} className="btn btn-info mt-3">
-          Log Data
-        </button> */}
-
-         {/* <div className="mt-3">
-          <h4>Saved Layouts:</h4>
-          <ul className="list-unstyled">
-            {layouts.map((layout, index) => (
-              <li key={index}>
-                <button
-                  className="btn btn-warning m-1"
-                  onClick={() => handleLoadLayout(layout._id)}
-                >
-                  {layout.bankId.bankname}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div> */}
-         {/* {layouts.length > 0 && (
-          <div className="mt-3">
-            <button onClick={deleteAllLayout} className="btn btn-danger">
-              Delete All Layout
-            </button>
-          </div>
-        )} */}
+        
        </div>
      </div>
    );
